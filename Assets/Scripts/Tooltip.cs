@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
-
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
