@@ -297,4 +297,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1976531086117107228}
-  Text: {fileID: 5285065572234218084}
+  text: {fileID: 5285065572234218084}
