@@ -11,14 +11,14 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         _tooltip = Instantiate(Resources.Load<GameObject>("Tooltip"), transform);
         _manager = _tooltip.GetComponent<TooltipManager>();
-        _manager.SetText(tooltipText);
+        _manager.Text.SetText(tooltipText);
         _manager.SetBackgroundColor(backgroundColor);
         _tooltip.SetActive(false);
     }
 
     private void ShowTooltip()
     {
-        var backgroundSize = new Vector2(_manager.GetText.preferredWidth, _manager.GetText.preferredHeight);
+        var backgroundSize = new Vector2(_manager.Text.preferredWidth, _manager.Text.preferredHeight);
         _manager.GetComponent<RectTransform>().sizeDelta = backgroundSize;
         _tooltip.SetActive(true);
     }
