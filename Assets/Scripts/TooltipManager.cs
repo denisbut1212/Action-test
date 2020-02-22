@@ -9,4 +9,5 @@ public class TooltipManager : MonoBehaviour
 
     public TextMeshProUGUI Text => text;
     public void SetBackgroundColor(Color color) => background.color = color;
+    
 }
