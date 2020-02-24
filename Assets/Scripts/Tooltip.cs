@@ -19,46 +19,50 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Color backgroundColor;
     private GameObject _tooltip;
     private TooltipManager _manager;
+    private RectTransform _tooltipRect;
+     
     private void Start()
     {
         _tooltip = Instantiate(Resources.Load<GameObject>("Tooltip"), transform);
+        _tooltipRect = _tooltip.GetComponent<RectTransform>();
         _manager = _tooltip.GetComponent<TooltipManager>();
         _manager.Text.SetText(tooltipText);
         _manager.SetBackgroundColor(backgroundColor);
-        var tooltipSize = new Vector2(_manager.Text.preferredWidth, _manager.Text.preferredHeight);
-        _tooltip.GetComponent<RectTransform>().sizeDelta = tooltipSize;
+        Debug.Log(_manager.Text.preferredHeight);
+        var backgroundSize = new Vector2(_manager.Text.preferredWidth, _manager.Text.preferredHeight);
+        _tooltipRect.sizeDelta = backgroundSize;
         _tooltip.SetActive(false);
     }
 
     private void ShowTooltip()
     {
-        var tooltipRect = _tooltip.GetComponent<RectTransform>();
+       
         var transformRect = transform.GetComponent<RectTransform>().rect;
         var tooltipTransform = _tooltip.transform;
         switch (tooltipPosition)
         {
             case TooltipPositionType.BottomLeft:
-                tooltipRect.pivot = Vector2.up;
+                _tooltipRect.pivot = Vector2.up;
                 tooltipTransform.localPosition = new Vector3(-transformRect.width / 2f, -1.2f * transformRect.height / 2f);
                 break;
             case TooltipPositionType.BottomCenter:
-                tooltipRect.pivot = new Vector2(0.5f, 1);
+                _tooltipRect.pivot = new Vector2(0.5f, 1);
                 tooltipTransform.localPosition = new Vector3(0, -1.2f * transformRect.height / 2f);
                 break;
             case TooltipPositionType.BottomRight:
-                tooltipRect.pivot = Vector2.one;
+                _tooltipRect.pivot = Vector2.one;
                 tooltipTransform.localPosition = new Vector3(transformRect.width / 2f, -1.2f * transformRect.height / 2f);
                 break;
             case TooltipPositionType.TopLeft:
-                tooltipRect.pivot = Vector2.zero;
+                _tooltipRect.pivot = Vector2.zero;
                 tooltipTransform.localPosition = new Vector3(-transformRect.width / 2f, 1.2f * transformRect.height / 2f);
                 break;
             case TooltipPositionType.TopCenter:
-                tooltipRect.pivot = new Vector2(0.5f, 0);
+                _tooltipRect.pivot = new Vector2(0.5f, 0);
                 tooltipTransform.localPosition = new Vector3(0, 1.2f * transformRect.height / 2f);
                 break;
             case TooltipPositionType.TopRight:
-                tooltipRect.pivot = Vector2.right;
+                _tooltipRect.pivot = Vector2.right;
                 tooltipTransform.localPosition = new Vector3(transformRect.width / 2f, 1.2f * transformRect.height / 2f);
                 break;
             default:
