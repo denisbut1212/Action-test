@@ -29,7 +29,6 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         _tooltipRect = _tooltip.GetComponent<RectTransform>();
         var text = _tooltip.GetComponentInChildren<TextMeshProUGUI>();
         text.SetText(tooltipText);
-        Debug.Log(text.bounds);
         _tooltipRect.sizeDelta = new Vector2(text.preferredWidth + textIndent, text.preferredHeight + textIndent);
         _tooltip.SetActive(false);
     }
