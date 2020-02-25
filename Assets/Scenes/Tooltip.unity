@@ -252,9 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729d5680ef3a2f64b80af484ceff4709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipPosition: 0
-  tooltipText: "\u0417\u0430\u043F\u0443\u0441\u043A \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B\n21321\n3\n23\n2"
-  backgroundColor: {r: 0.8773585, g: 0.44029042, b: 0.29383236, a: 1}
+  tooltipPosition: 2
+  tooltipText: '6ywerweqwryeqrwyerqywer yuqery7qwetqwteyqwteyqweyqyerqyweryqeryqwreyqwreyqwreyqwreyqwreyqwreyqwer
+
+    qwegtqwtueqtwue'
+  textIndent: 5
+  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
