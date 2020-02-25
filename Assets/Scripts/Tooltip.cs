@@ -1,6 +1,7 @@
-﻿using System;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -16,21 +17,20 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public TooltipPositionType tooltipPosition;
     [TextArea] public string tooltipText;
+    public float textIndent = 5f;
     public Color backgroundColor;
     private GameObject _tooltip;
-    private TooltipManager _manager;
     private RectTransform _tooltipRect;
      
     private void Start()
     {
         _tooltip = Instantiate(Resources.Load<GameObject>("Tooltip"), transform);
+        _tooltip.GetComponent<Image>().color = backgroundColor;
         _tooltipRect = _tooltip.GetComponent<RectTransform>();
-        _manager = _tooltip.GetComponent<TooltipManager>();
-        _manager.Text.SetText(tooltipText);
-        _manager.SetBackgroundColor(backgroundColor);
-        Debug.Log(_manager.Text.preferredHeight);
-        var backgroundSize = new Vector2(_manager.Text.preferredWidth, _manager.Text.preferredHeight);
-        _tooltipRect.sizeDelta = backgroundSize;
+        var text = _tooltip.GetComponentInChildren<TextMeshProUGUI>();
+        text.SetText(tooltipText);
+        Debug.Log(text.bounds);
+        _tooltipRect.sizeDelta = new Vector2(text.preferredWidth + textIndent, text.preferredHeight + textIndent);
         _tooltip.SetActive(false);
     }
 
@@ -65,10 +65,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 _tooltipRect.pivot = Vector2.right;
                 tooltipTransform.localPosition = new Vector3(transformRect.width / 2f, 1.2f * transformRect.height / 2f);
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
-        
         _tooltip.SetActive(true);
     }
 
