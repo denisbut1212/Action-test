@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -30,41 +31,48 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         var text = _tooltip.GetComponentInChildren<TextMeshProUGUI>();
         text.SetText(tooltipText);
         _tooltipRect.sizeDelta = new Vector2(text.preferredWidth + textIndent, text.preferredHeight + textIndent);
+        SetTooltipPosition();
         _tooltip.SetActive(false);
     }
 
-    private void ShowTooltip()
+    private void SetTooltipPosition()
     {
-       
         var transformRect = transform.GetComponent<RectTransform>().rect;
         var tooltipTransform = _tooltip.transform;
+        const float tooltipIndent = 1.2f; 
         switch (tooltipPosition)
         {
             case TooltipPositionType.BottomLeft:
                 _tooltipRect.pivot = Vector2.up;
-                tooltipTransform.localPosition = new Vector3(-transformRect.width / 2f, -1.2f * transformRect.height / 2f);
+                tooltipTransform.localPosition = new Vector3(-transformRect.width / 2f, -tooltipIndent * transformRect.height / 2f);
                 break;
             case TooltipPositionType.BottomCenter:
                 _tooltipRect.pivot = new Vector2(0.5f, 1);
-                tooltipTransform.localPosition = new Vector3(0, -1.2f * transformRect.height / 2f);
+                tooltipTransform.localPosition = new Vector3(0, -tooltipIndent * transformRect.height / 2f);
                 break;
             case TooltipPositionType.BottomRight:
                 _tooltipRect.pivot = Vector2.one;
-                tooltipTransform.localPosition = new Vector3(transformRect.width / 2f, -1.2f * transformRect.height / 2f);
+                tooltipTransform.localPosition = new Vector3(transformRect.width / 2f, -tooltipIndent * transformRect.height / 2f);
                 break;
             case TooltipPositionType.TopLeft:
                 _tooltipRect.pivot = Vector2.zero;
-                tooltipTransform.localPosition = new Vector3(-transformRect.width / 2f, 1.2f * transformRect.height / 2f);
+                tooltipTransform.localPosition = new Vector3(-transformRect.width / 2f, tooltipIndent * transformRect.height / 2f);
                 break;
             case TooltipPositionType.TopCenter:
                 _tooltipRect.pivot = new Vector2(0.5f, 0);
-                tooltipTransform.localPosition = new Vector3(0, 1.2f * transformRect.height / 2f);
+                tooltipTransform.localPosition = new Vector3(0, tooltipIndent * transformRect.height / 2f);
                 break;
             case TooltipPositionType.TopRight:
                 _tooltipRect.pivot = Vector2.right;
-                tooltipTransform.localPosition = new Vector3(transformRect.width / 2f, 1.2f * transformRect.height / 2f);
+                tooltipTransform.localPosition = new Vector3(transformRect.width / 2f, tooltipIndent * transformRect.height / 2f);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void ShowTooltip()
+    {
         _tooltip.SetActive(true);
     }
 
