@@ -103,6 +103,7 @@ PlayerSettings:
   xboxOneMonoLoggingLevel: 0
   xboxOneLoggingLevel: 1
   xboxOneDisableEsram: 0
+  xboxOneEnableTypeOptimization: 0
   xboxOnePresentImmediateThreshold: 0
   switchQueueCommandMemory: 0
   switchQueueControlMemory: 16384
@@ -650,6 +651,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Collab: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -663,10 +665,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: c527a5d6-60ce-4ddd-af60-edc83dbb08b8
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Testing
+  organizationId: denisbut1212
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
