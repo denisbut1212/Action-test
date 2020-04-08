@@ -2,7 +2,7 @@ name: Action
 on: [push]
 jobs:
   chache:
-    runs-on: [windows-latest]
+    runs-on: [windows-latest, x64]
     steps:
     - uses: actions/checkout@v2.1.0
     - name: Cache
