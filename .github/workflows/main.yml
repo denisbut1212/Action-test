@@ -4,21 +4,30 @@ jobs:
   chache:
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v2.1.0
-    - name: Cache
-      uses: actions/cache@v1.1.2
-      with:
-          path: Library
-          key: Library
-    - name: Unity - Builder
-      uses: webbertakken/unity-builder@v0.12
-      env:
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+    - name: Unity - Request Activation File
+      uses: webbertakken/unity-request-manual-activation-file@v1.1
       with:
         unityVersion: 2019.3.7f1
-        targetPlatform: StandaloneWindows64
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+#    - uses: actions/checkout@v2.1.0
+#    - name: Cache
+#      uses: actions/cache@v1.1.2
+#      with:
+#          path: Library
+#          key: Library
+#    - name: Unity - Builder
+#      uses: webbertakken/unity-builder@v0.12
+#      env:
+#        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+#        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+#        UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+#      with:
+#        unityVersion: 2019.3.7f1
+#        targetPlatform: StandaloneWindows64
 
 
       
