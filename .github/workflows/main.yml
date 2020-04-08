@@ -8,11 +8,11 @@ jobs:
       uses: webbertakken/unity-request-manual-activation-file@v1.1
       with:
         unityVersion: 2019.3.7f1
-      - name: Expose as artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
-          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+    - name: Expose as artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+        path: ${{ steps.getManualLicenseFile.outputs.filePath }}
 #    - uses: actions/checkout@v2.1.0
 #    - name: Cache
 #      uses: actions/cache@v1.1.2
