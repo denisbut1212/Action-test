@@ -6,6 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.1.0
     - name: Cache
+      id: cache
       uses: actions/cache@v1.1.2
       with:
           path: Library
@@ -17,7 +18,8 @@ jobs:
       with:
         unityVersion: 2019.3.7f1
         targetPlatform: StandaloneWindows64
-    - name: Cache
+    - name: Generate new cache
+      if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1.1.2
       with:
           path: Library
