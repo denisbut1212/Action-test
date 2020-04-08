@@ -5,6 +5,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - name: Unity - Request Activation File
+      id: getManualLicenseFile
       uses: webbertakken/unity-request-manual-activation-file@v1.1
       with:
         unityVersion: 2019.3.7f1
