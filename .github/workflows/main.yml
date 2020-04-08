@@ -17,6 +17,8 @@ jobs:
       with:
         unityVersion: 2019.3.7f1
         targetPlatform: StandaloneWindows64
-
-
-      
+    - name: Cache
+      uses: actions/cache@v1.1.2
+      with:
+          path: Library
+          key: Library
