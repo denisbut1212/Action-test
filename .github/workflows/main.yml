@@ -9,7 +9,17 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-          key: Library
+        path: Library
+        key: Library
+    - uses: webbertakken/unity-test-runner@v1.6
+      id: tests
+      with:
+        unityVersion: 2019.3.7f1
+        testMode: playmode
+        artifactsPath: ${{ matrix.testMode }}-artifacts
+    - uses: actions/upload-artifact@v1
+      with:
+        path: ${{ steps.tests.outputs.artifactsPath }}
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
       env:
@@ -21,4 +31,5 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1.1.2
       with:
-          key: Library
+        path: Library
+        key: Library
