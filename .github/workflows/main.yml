@@ -1,5 +1,7 @@
 name: Action
 on: [push]
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 jobs:
   chache:
     runs-on: [ubuntu-latest]
@@ -16,14 +18,11 @@ jobs:
       with:
         unityVersion: 2019.3.7f1
         testMode: playmode
-        artifactsPath: ${{ matrix.testMode }}-artifacts
     - uses: actions/upload-artifact@v1
       with:
         path: ${{ steps.tests.outputs.artifactsPath }}
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
-      env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       with:
         unityVersion: 2019.3.7f1
         targetPlatform: StandaloneWindows64
