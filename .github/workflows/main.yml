@@ -1,5 +1,7 @@
 name: Action
 on: [push]
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 jobs:
   chache:
     runs-on: [ubuntu-latest]
@@ -9,11 +11,19 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-          key: Library
+        path: Library
+        key: Library
+    - uses: webbertakken/unity-test-runner@v1.6
+      id: tests
+      with:
+        unityVersion: 2019.3.7f1
+        testMode: playmode
+    - uses: actions/upload-artifact@v1
+      with:
+        name: my-artifact
+        path: ${{ steps.tests.outputs.artifactsPath }}
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
-      env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       with:
         unityVersion: 2019.3.7f1
         targetPlatform: StandaloneWindows64
@@ -21,4 +31,5 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1.1.2
       with:
-          key: Library
+        path: Library
+        key: Library
