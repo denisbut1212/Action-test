@@ -9,7 +9,6 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-          path: Library
           key: Library
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
@@ -22,5 +21,4 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1.1.2
       with:
-          path: Library
           key: Library
