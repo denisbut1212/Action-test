@@ -20,6 +20,7 @@ jobs:
         testMode: playmode
     - uses: actions/upload-artifact@v1
       with:
+        name: my-artifact
         path: ${{ steps.tests.outputs.artifactsPath }}
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
