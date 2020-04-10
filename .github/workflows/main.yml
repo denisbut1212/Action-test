@@ -14,14 +14,12 @@ jobs:
           - editmode
         UnityVersion:
           - 2019.3.7f1
-        projectPath:
-          - Action-test
     steps:
     - name: Cache
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: ${{ matrix.projectPath }}/Library
+        path: Library
         key: Library
     - uses: actions/checkout@v2.1.0
       with:
@@ -40,7 +38,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1.1.2
       with:
-        path: ${{ matrix.projectPath }}/Library
+        path: Library
         key: Library
   Build:
     runs-on: [ubuntu-latest]
@@ -53,7 +51,7 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: ${{ matrix.projectPath }}/ibrary
+        path: Library
         key: Library  
     - uses: actions/checkout@v2.1.0
       with:
@@ -61,7 +59,6 @@ jobs:
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
       with:
-        projectPath: ${{ matrix.projectPath }}
         unityVersion: ${{ matrix.UnityVersion }}
         targetPlatform: StandaloneWindows64
     - uses: actions/upload-artifact@v1
