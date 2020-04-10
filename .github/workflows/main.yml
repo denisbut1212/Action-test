@@ -15,18 +15,16 @@ jobs:
         UnityVersion:
           - 2019.3.7f1
     steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        clean: false
+        lfs: true
     - name: Cache
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: repo/Library
+        path: Library
         key: Library
-    - run: ls -l
-    - uses: actions/checkout@v2.1.0
-      with:
-        path: repo
-        clean: false
-        lfs: true
     - run: ls -l
     - uses: webbertakken/unity-test-runner@v1.6
       id: tests
@@ -51,17 +49,16 @@ jobs:
         UnityVersion: 
           - 2019.3.7f1
     steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        clean: false
+        lfs: true
     - name: Cache
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: repo/Library
+        path: Library
         key: Library
-    - uses: actions/checkout@v2.1.0
-      with:
-        path: repo
-        clean: false
-        lfs: true
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
       with:
