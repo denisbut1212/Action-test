@@ -5,7 +5,7 @@ env:
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
   UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
 jobs:
-  Tests and build:
+  Tests_and_build:
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2.1.0
