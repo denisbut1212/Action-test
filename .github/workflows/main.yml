@@ -5,38 +5,59 @@ env:
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
   UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
 jobs:
-  Tests_and_build:
+  UnitTests:
     runs-on: [ubuntu-latest]
     strategy:
       matrix:
         testMode:
           - playmode
           - editmode
+        UnityVersion:
+          - 2019.3.7f1
     steps:
-    - uses: actions/checkout@v2.1.0
     - name: Cache
       id: cache
       uses: actions/cache@v1.1.2
       with:
         path: Library
         key: Library
+    - uses: actions/checkout@v2.1.0
+      with:
+        lfs: true
     - uses: webbertakken/unity-test-runner@v1.6
       id: tests
       with:
-        unityVersion: 2019.3.7f1
-        testMode: playmode
+        unityVersion: ${{ matrix.UnityVersion }}
+        testMode: ${{ matrix.testMode }}
+        artifactsPath: ${{ matrix.testMode }}-artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: test results
+        name: Test results for ${{ matrix.testMode }}
         path: ${{ steps.tests.outputs.artifactsPath }}
-    - name: Unity - Builder
-      uses: webbertakken/unity-builder@v0.12
-      with:
-        unityVersion: 2019.3.7f1
-        targetPlatform: StandaloneWindows64
     - name: Generate new cache
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1.1.2
       with:
         path: Library
         key: Library
+  Build:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        UnityVersion: 
+          - 2019.3.7f1
+    steps:
+    - name: Cache
+      id: cache
+      uses: actions/cache@v1.1.2
+      with:
+        path: Library
+        key: Library
+    - uses: actions/checkout@v2.1.0
+      with:
+        lfs: true
+    - name: Unity - Builder
+      uses: webbertakken/unity-builder@v0.12
+      with:
+        unityVersion: ${{ matrix.UnityVersion }}
+        targetPlatform: StandaloneWindows64
