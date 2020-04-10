@@ -21,11 +21,11 @@ jobs:
       with:
         path: Library
         key: Library
+    - run: ls -l
     - uses: actions/checkout@v2.1.0
       with:
         clean: false
         lfs: true
-    - run: ls -l
     - uses: webbertakken/unity-test-runner@v1.6
       id: tests
       with:
