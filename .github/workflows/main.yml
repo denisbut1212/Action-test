@@ -24,7 +24,6 @@ jobs:
     - uses: actions/checkout@v2.1.0
       with:
         lfs: true
-    - run: ls -l
     - uses: webbertakken/unity-test-runner@v1.6
       id: tests
       with:
