@@ -26,6 +26,7 @@ jobs:
       with:
         clean: false
         lfs: true
+    - run: ls -l
     - uses: webbertakken/unity-test-runner@v1.6
       id: tests
       with:
