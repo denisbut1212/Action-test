@@ -19,11 +19,12 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: Library
+        path: repo/Library
         key: Library
     - run: ls -l
     - uses: actions/checkout@v2.1.0
       with:
+        path: repo
         clean: false
         lfs: true
     - run: ls -l
@@ -54,10 +55,11 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: Library
+        path: repo/Library
         key: Library
     - uses: actions/checkout@v2.1.0
       with:
+        path: repo
         clean: false
         lfs: true
     - name: Unity - Builder
