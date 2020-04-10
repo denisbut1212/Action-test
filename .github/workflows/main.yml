@@ -19,11 +19,10 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: Assets
-        key: Assets
+        path: Library
+        key: Library
     - uses: actions/checkout@v2.1.0
       with:
-        clean: false
         lfs: true
     - run: ls -l
     - uses: webbertakken/unity-test-runner@v1.6
@@ -40,8 +39,8 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1.1.2
       with:
-        path: Assets
-        key: Assets
+        path: Library
+        key: Library
   Build:
     runs-on: [ubuntu-latest]
     strategy:
@@ -53,11 +52,10 @@ jobs:
       id: cache
       uses: actions/cache@v1.1.2
       with:
-        path: Assets
-        key: Assets   
+        path: Library
+        key: Library  
     - uses: actions/checkout@v2.1.0
       with:
-        clean: false
         lfs: true
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
