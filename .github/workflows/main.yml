@@ -7,6 +7,10 @@ env:
 jobs:
   Tests_and_build:
     runs-on: [ubuntu-latest]
+    matrix:
+      testMode:
+        - playmode
+        - editmode
     steps:
     - uses: actions/checkout@v2.1.0
     - name: Cache
@@ -22,7 +26,7 @@ jobs:
         testMode: playmode
     - uses: actions/upload-artifact@v1
       with:
-        name: my-artifact
+        name: test results
         path: ${{ steps.tests.outputs.artifactsPath }}
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
