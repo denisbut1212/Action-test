@@ -7,10 +7,11 @@ env:
 jobs:
   Tests_and_build:
     runs-on: [ubuntu-latest]
-    matrix:
-      testMode:
-        - playmode
-        - editmode
+    strategy:
+      matrix:
+        testMode:
+          - playmode
+          - editmode
     steps:
     - uses: actions/checkout@v2.1.0
     - name: Cache
