@@ -8,6 +8,7 @@ jobs:
   UnitTests:
     runs-on: [ubuntu-latest]
     strategy:
+      fail-fast: false
       matrix:
         testMode:
           - playmode
@@ -15,15 +16,15 @@ jobs:
         UnityVersion:
           - 2019.3.7f1
     steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        lfs: true
     - name: Cache
       id: cache
       uses: actions/cache@v1.1.2
       with:
         path: Library
         key: Library
-    - uses: actions/checkout@v2.1.0
-      with:
-        lfs: true
     - uses: webbertakken/unity-test-runner@v1.6
       id: tests
       with:
@@ -41,21 +42,23 @@ jobs:
         path: Library
         key: Library
   Build:
+    needs: [UnitTests]
     runs-on: [ubuntu-latest]
     strategy:
+      fail-fast: false
       matrix:
         UnityVersion: 
           - 2019.3.7f1
     steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        lfs: true
     - name: Cache
       id: cache
       uses: actions/cache@v1.1.2
       with:
         path: Library
         key: Library  
-    - uses: actions/checkout@v2.1.0
-      with:
-        lfs: true
     - name: Unity - Builder
       uses: webbertakken/unity-builder@v0.12
       with:
