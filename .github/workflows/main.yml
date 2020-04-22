@@ -1,5 +1,5 @@
 name: Action
-on: [push]
+on: [pull_request]
 env:
   UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
