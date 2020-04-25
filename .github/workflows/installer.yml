@@ -5,10 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.1.0
-      - uses: actions/cache@v1.1.2
-        with:
-          path: Library
-          key: Library
       - uses: webbertakken/unity-builder@v0.12
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -16,6 +12,10 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           unityVersion: 2019.3.7f1
+      - uses: actions/cache@v1.1.2
+        with:
+          path: Library
+          key: Library
       - uses: actions/upload-artifact@v1
         with:
           name: build
@@ -28,9 +28,6 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: build
-      - run: |
-          cd build
-          dir
       - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss
       - uses: actions/upload-artifact@v1
         with:
