@@ -24,7 +24,9 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: build
-      - run: dir
+      - run: |
+          cd build
+          dir
       - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss
       - uses: actions/upload-artifact@v1
         with:
