@@ -1,4 +1,4 @@
-#define MyAppName "Познавательная Реальность"
+#define MyAppName "ГЏГ®Г§Г­Г ГўГ ГІГҐГ«ГјГ­Г Гї ГђГҐГ Г«ГјГ­Г®Г±ГІГј"
 #define MyAppVersion "0.3.7.1"
 #define MyAppPublisher "Ltd Prof-it"
 #define MyAppURL "http://www.co-reality.ru/"
@@ -31,8 +31,8 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\build\ScreenshTool.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\build\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\build\StandaloneWindows64\StandaloneWindows64.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\build\StandaloneWindows64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
