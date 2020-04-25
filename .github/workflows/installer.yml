@@ -6,6 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2.1.0
       - uses: webbertakken/unity-builder@v0.12
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           unityVersion: 2019.3.7f1
       - uses: actions/upload-artifact@v1
