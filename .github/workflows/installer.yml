@@ -8,13 +8,21 @@ jobs:
       - uses: webbertakken/unity-builder@v0.12
         with:
           unityVersion: 2019.3.7f1
+      - uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: build
   create_installer:
     needs: [build]
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2.1.0
-    - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss
-    - uses: actions/upload-artifact@v1.0.0
-      with:
-        name: installer
-        path: installer
+      - uses: actions/checkout@v2.1.0
+      - uses: actions/download-artifact@v1
+        with:
+          name: build
+      - run: dir
+      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss
+      - uses: actions/upload-artifact@v1
+        with:
+          name: installer
+          path: installer
