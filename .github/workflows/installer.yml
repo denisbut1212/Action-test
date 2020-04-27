@@ -31,7 +31,7 @@ jobs:
       - shell: bash
         run: |
           cd InnoSetup
-          cut installer.iss
+          less installer.iss
 #      - uses: actions/upload-artifact@v1
 #        with:
 #          name: installer
