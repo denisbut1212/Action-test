@@ -23,7 +23,7 @@ jobs:
  #         name: build
  #         path: build
       - id: getVersion
-        run: echo "::set-output name=test::$(git tag | tail -1)"
+        run: echo "::set-output name=test::"$(git tag | tail -1)""
   create_installer:
     needs: [build]
     runs-on: windows-latest
