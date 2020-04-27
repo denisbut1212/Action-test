@@ -3,27 +3,27 @@ on:
   release:
     types: [published]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.1.0
-      - uses: actions/cache@v1.1.2
-        with:
-          path: Library
-          key: Library
-      - uses: webbertakken/unity-builder@v0.12
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-        with:
-          unityVersion: 2019.3.7f1
-      - uses: actions/upload-artifact@v1
-        with:
-          name: build
-          path: build
+ # build:
+ #   runs-on: ubuntu-latest
+ #   steps:
+ #     - uses: actions/checkout@v2.1.0
+ #     - uses: actions/cache@v1.1.2
+ #       with:
+ #         path: Library
+ #         key: Library
+ #     - uses: webbertakken/unity-builder@v0.12
+ #       env:
+ #         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+ #         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+ #         UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+ #       with:
+ #         unityVersion: 2019.3.7f1
+ #     - uses: actions/upload-artifact@v1
+ #       with:
+ #         name: build
+ #         path: build
   create_installer:
-    needs: [build]
+#    needs: [build]
     runs-on: windows-latest
     outputs:
       version:  ${{ steps.getVersion.outputs.out }}
@@ -31,12 +31,12 @@ jobs:
       - uses: actions/checkout@v2.1.0
       - id: getVersion
         run: git tag | tail -1 
-      - uses: actions/download-artifact@v1
-        with:
-          name: build
-      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss "/DMyAppVersion=${{ steps.getVersion.outputs.out }}"
+#      - uses: actions/download-artifact@v1
+#        with:
+#          name: build
+#      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss "/DMyAppVersion=${{ steps.getVersion.outputs.out }}"
       - run: echo "${{ steps.getVersion.outputs.out }}"
-      - uses: actions/upload-artifact@v1
-        with:
-          name: installer
-          path: installer
+#      - uses: actions/upload-artifact@v1
+#       with:
+#        name: installer
+#          path: installer
