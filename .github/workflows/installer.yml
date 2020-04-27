@@ -1,10 +1,12 @@
 name: release
 on: [push]
 jobs:
- # build:
- #   runs-on: ubuntu-latest
- #   steps:
- #     - uses: actions/checkout@v2.1.0
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version:  ${{ steps.getVersion.outputs.test }}
+    steps:
+      - uses: actions/checkout@v2.1.0
  #     - uses: actions/cache@v1.1.2
  #       with:
  #         path: Library
@@ -20,20 +22,19 @@ jobs:
  #       with:
  #         name: build
  #         path: build
+      - id: getVersion
+        run: echo "::set-output name=test::$(git tag | tail -1)"
   create_installer:
-#    needs: [build]
+    needs: [build]
     runs-on: windows-latest
-    outputs:
-      version:  ${{ steps.getVersion.outputs.out }}
     steps:
       - uses: actions/checkout@v2.1.0
-      - id: getVersion
-        run: echo "::set-output name=out::$(git tag | tail -1)"
+      
 #      - uses: actions/download-artifact@v1
 #        with:
 #          name: build
 #      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss "/DMyAppVersion=${{ steps.getVersion.outputs.out }}"
-      - run: echo "${{ create_installer.outputs.version }}"
+      - run: echo ${{ needs.build.outputs.version }}
 #      - uses: actions/upload-artifact@v1
 #       with:
 #        name: installer
