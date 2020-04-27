@@ -29,7 +29,7 @@ jobs:
           shell: bash  
       - run: |
           sh InnoSetup\getVersion.sh
-          \InnoSetup\ISCC.exe .\InnoSetup\installer.iss
+          \InnoSetup\ISCC.exe \InnoSetup\installer.iss
       - uses: actions/upload-artifact@v1
         with:
           name: installer
