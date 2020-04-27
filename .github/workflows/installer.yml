@@ -1,7 +1,5 @@
 name: release
-on:
- release:
-    types: [published]
+on: [push]
 jobs:
  # build:
  #   runs-on: ubuntu-latest
@@ -35,7 +33,7 @@ jobs:
 #        with:
 #          name: build
 #      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss "/DMyAppVersion=${{ steps.getVersion.outputs.out }}"
-      - run: echo "${{ github.ref }}"
+      - run: echo "${{ github.head_ref }}"
 #      - uses: actions/upload-artifact@v1
 #       with:
 #        name: installer
