@@ -16,8 +16,6 @@ jobs:
         with:
           name: build
           path: build
-      - id: getVersion
-        run: echo "::set-output name=test::$(sh getVersion.sh)" 
   create_installer:
     needs: [build]
     runs-on: windows-latest
@@ -26,8 +24,9 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: build
-          shell: bash  
-      - run: |
+            
+      - shell: bash
+        run: |
           sh InnoSetup\getVersion.sh
           \InnoSetup\ISCC.exe \InnoSetup\installer.iss
       - uses: actions/upload-artifact@v1
