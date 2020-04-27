@@ -25,8 +25,8 @@ jobs:
   create_installer:
     needs: [build]
     runs-on: windows-latest
-    outputs:
-      version:  ${{ steps.getVersion.outputs.out }}
+#    outputs:
+#      version:  ${{ steps.getVersion.outputs.out }}
     steps:
       - uses: actions/checkout@v2.1.0
       - id: getVersion
