@@ -30,7 +30,7 @@ jobs:
           sh getVersion.sh
       - run: |
           cd InnoSetup
-          ISCC.exe installer.iss
+          .\ISCC.exe .\installer.iss
       - uses: actions/upload-artifact@v1
         with:
           name: installer
