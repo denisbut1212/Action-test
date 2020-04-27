@@ -3,8 +3,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      version:  ${{ steps.getVersion.outputs.test }}
     steps:
       - uses: actions/checkout@v2.1.0
       - uses: webbertakken/unity-builder@v0.12
@@ -28,7 +26,10 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: build
-      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss "/DMyAppVersion=1"
+          shell: bash  
+      - run: |
+          sh InnoSetup\getVersion.sh
+          \InnoSetup\ISCC.exe .\InnoSetup\installer.iss
       - uses: actions/upload-artifact@v1
         with:
           name: installer
