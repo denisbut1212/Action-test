@@ -1,5 +1,7 @@
 name: release
-on: [push]
+on:
+ release:
+    types: [published]
 jobs:
  # build:
  #   runs-on: ubuntu-latest
@@ -23,12 +25,12 @@ jobs:
   create_installer:
 #    needs: [build]
     runs-on: windows-latest
-    outputs:
-      version:  ${{ steps.getVersion.outputs.out }}
+#    outputs:
+#      version:  ${{ steps.getVersion.outputs.out }}
     steps:
-      - uses: actions/checkout@v2.1.0
-      - id: getVersion
-        run: git tag | tail -1 
+#      - uses: actions/checkout@v2.1.0
+#      - id: getVersion
+#        run: git tag | tail -1 
 #      - uses: actions/download-artifact@v1
 #        with:
 #          name: build
