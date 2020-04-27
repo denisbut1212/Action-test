@@ -28,10 +28,11 @@ jobs:
         run: |
           cd InnoSetup
           sh getVersion.sh
-      - run: |
+      - shell: bash
+        run: |
           cd InnoSetup
-          .\ISCC.exe .\installer.iss
-      - uses: actions/upload-artifact@v1
-        with:
-          name: installer
-          path: installer
+          cut installer.iss
+#      - uses: actions/upload-artifact@v1
+#        with:
+#          name: installer
+#          path: installer
