@@ -7,3 +7,4 @@ cd InnoSetup
 	cat installer.iss; 
 } > installer.iss.new
 mv installer.iss.new installer.iss
+echo Done
