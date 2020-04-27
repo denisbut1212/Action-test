@@ -23,7 +23,7 @@ jobs:
  #         name: build
  #         path: build
       - id: getVersion
-        run: echo "::set-output name=test::git tag | tail -1 | bash" 
+        run: echo "::set-output name=test::git tag | tail -1" 
   create_installer:
     needs: [build]
     runs-on: windows-latest
@@ -35,7 +35,7 @@ jobs:
 #          name: build
 #      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss "/DMyAppVersion=${{ steps.getVersion.outputs.out }}"
       - shell: bash 
-        run: echo ${{ needs.build.outputs.version }}
+        run: echo ${{ needs.build.outputs.version }} | bash
 #      - uses: actions/upload-artifact@v1
 #       with:
 #        name: installer
