@@ -28,6 +28,8 @@ jobs:
         run: |
           cd InnoSetup
           sh getVersion.sh
+      - run: |
+          cd InnoSetup
           ISCC.exe installer.iss
       - uses: actions/upload-artifact@v1
         with:
