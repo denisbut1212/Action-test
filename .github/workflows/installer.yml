@@ -34,7 +34,8 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: build
-      - run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss /DMyAppVersion=${{ outputs.version }}
+      #- run: .\InnoSetup\ISCC.exe .\InnoSetup\installer.iss /DMyAppVersion=${{ outputs.version }}
+      - run: echo "${{ outputs.version }}"
       - uses: actions/upload-artifact@v1
         with:
           name: installer
