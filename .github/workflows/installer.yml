@@ -25,7 +25,9 @@ jobs:
         with:
           name: build     
       - shell: bash
-        run: sh getVersion.sh
+        run: |
+          cd InnoSetup
+          sh getVersion.sh
       - run: |
           cd InnoSetup
           ISCC.exe installer.iss
