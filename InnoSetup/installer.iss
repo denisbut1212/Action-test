@@ -1,5 +1,4 @@
-#define MyAppName "Ïîçíàâàòåëüíàÿ Ðåàëüíîñòü"
-#define MyAppVersion "0.3.7.1"
+#define MyAppName "Позновательная реальность"
 #define MyAppPublisher "Ltd Prof-it"
 #define MyAppURL "http://www.co-reality.ru/"
 #define MyAppExeName "Cognitive Reality.exe"
