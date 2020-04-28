@@ -27,7 +27,7 @@ jobs:
       - shell: bash
         run: |
           cd InnoSetup
-          ISCC.exe installer.iss ${{ format('/DMyAppMyAppVersion={0}', steps.getVersion.outputs.version) }}
+          ISCC.exe installer.iss "${{ format('/DMyAppMyAppVersion={0}', steps.getVersion.outputs.version) }}"
       - uses: actions/download-artifact@v1
         with:
           name: build     
