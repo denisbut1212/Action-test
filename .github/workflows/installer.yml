@@ -26,7 +26,7 @@ jobs:
         run: echo "##[set-output name=version;]$(git tag | tail -1)"
       - shell: bash
         run: |
-          cd InnoSetup\
+          cd InnoSetup
           ISCC.exe installer.iss ${{ format('/DMyAppMyAppVersion={0}', steps.getVersion.outputs.version) }}
       - uses: actions/download-artifact@v1
         with:
