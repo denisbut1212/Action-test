@@ -21,18 +21,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2.1.0
+      - id: getVersion
+        shell: bash
+        run: echo "##[set-output name=version;]$(git tag | tail -1)"
+      - shell: bash
+        run: |
+          cd InnoSetup\
+          ISCC.exe installer.iss ${{ format('/DMyAppMyAppVersion={0}', steps.getVersion.outputs.version) }}
       - uses: actions/download-artifact@v1
         with:
           name: build     
-      - shell: bash
-        run: |
-          cd InnoSetup
-          sh getVersion.sh
-      - shell: bash
-        run: |
-          cd InnoSetup
-          less installer.iss
-#      - uses: actions/upload-artifact@v1
-#        with:
-#          name: installer
-#          path: installer
