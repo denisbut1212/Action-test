@@ -25,10 +25,10 @@ jobs:
  #       with:
  #         name: build
       - shell: bash
-        run: sh getVersion.sh
+        run: sed -i '1s/^/<added text> /'
         working-directory: InnoSetup
       - shell: bash
-        run:  less installer.iss
+        run:  git status
         working-directory: InnoSetup     
       - uses: actions/upload-artifact@v2
         with:
