@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$(git tag | tail -1) | bash
+echo $(git tag | tail -1) | bash
