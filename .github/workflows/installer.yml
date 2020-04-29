@@ -26,8 +26,7 @@ jobs:
  #         name: build
       - shell: bash
         id: getVersion
-        run: echo git tag | tail -1 | bash
-        working-directory: InnoSetup
+        run: git tag | tail -1
       - shell: bash
         run:  echo ${{ steps.getVersion.outputs.run }}
         working-directory: InnoSetup     
