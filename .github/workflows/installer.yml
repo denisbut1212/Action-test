@@ -26,8 +26,7 @@ jobs:
  #         name: build
       - shell: bash
         run: |
-          cd InnoSetup
-          sh getVersion.sh
+          sh InnoSetup\getVersion.sh
       - shell: cmd
         run: |
           cd InnoSetup 
