@@ -25,10 +25,11 @@ jobs:
  #       with:
  #         name: build
       - shell: bash
-        run: sh getVersion.sh
+        id: getVersion
+        run: git tag | tail -1
         working-directory: InnoSetup
       - shell: bash
-        run:  git status
+        run:  echo ${{ steps.getVersion.outputs.run }}
         working-directory: InnoSetup     
       - uses: actions/upload-artifact@v2
         with:
