@@ -39,8 +39,18 @@ jobs:
         with:
           name: installer
           path: installer
-      - name: Create Release
-        uses: ncipollo/release-action@v1.6.1
+      - uses: svenstaro/upload-release-action@1.0.1
         with:
-          artifacts: "build, installer"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build
+          asset_name: build
+          tag: ${{ github.ref }}
+          overwrite: true
+      - uses: svenstaro/upload-release-action@1.0.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: installer
+          asset_name: installer
+          tag: ${{ github.ref }}
+          overwrite: true
+
