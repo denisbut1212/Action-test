@@ -16,7 +16,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
-OutputDir=C:\Users\davs\Desktop
+OutputDir=..\installer
 OutputBaseFilename=cr_installer_{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
