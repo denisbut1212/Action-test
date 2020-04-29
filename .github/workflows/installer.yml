@@ -25,12 +25,11 @@ jobs:
  #       with:
  #         name: build
       - shell: bash
-        run: |
-          sh InnoSetup\getVersion.sh
+        run: sh getVersion.sh
+        working-directory: InnoSetup
       - shell: cmd
-        run: |
-          cd InnoSetup 
-          ISCC.exe installer.iss     
+        run:  ISCC.exe installer.iss
+        working-directory: InnoSetup     
       - uses: actions/upload-artifact@v2
         with:
           name: installer
