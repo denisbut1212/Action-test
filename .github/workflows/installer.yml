@@ -3,29 +3,29 @@ on:
   release:
     types: published 
 jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2.1.0
-#      - uses: webbertakken/unity-builder@v0.12
-#        env:
-#          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-#          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-#          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-#        with:
-#          unityVersion: 2019.3.7f1
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: build
-#          path: build
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: webbertakken/unity-builder@v0.12
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          unityVersion: 2019.3.7f1
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
   create_installer:
- #   needs: [build]
+    needs: [build]
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2.1.0
- #     - uses: actions/download-artifact@v1
- #       with:
- #         name: build
+      - uses: actions/download-artifact@v1
+        with:
+          name: build
       - shell: bash
         id: getVersion
         run: sh getVersion.sh
@@ -37,3 +37,8 @@ jobs:
         with:
           name: installer
           path: installer
+      - name: Create Release
+        uses: ncipollo/release-action@v1.6.1
+        with:
+          artifacts: "build, installer"
+          token: ${{ secrets.GITHUB_TOKEN }}
