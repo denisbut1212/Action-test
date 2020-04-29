@@ -25,7 +25,7 @@ jobs:
  #       with:
  #         name: build
       - shell: bash
-        run: sed -i '1s/^/<added text> /'
+        run: sh getVersion.sh
         working-directory: InnoSetup
       - shell: bash
         run:  git status
