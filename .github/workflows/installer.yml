@@ -1,5 +1,7 @@
 name: release
-on: [release]
+on: 
+  release:
+    types: published 
 jobs:
 #  build:
 #    runs-on: ubuntu-latest
@@ -26,9 +28,10 @@ jobs:
  #         name: build
       - shell: bash
         id: getVersion
-        run: git tag | tail -1
+        run: sh getVersion.sh
+        working-directory: InnoSetup
       - shell: bash
-        run:  echo ${{ steps.getVersion.outputs.run }}
+        run:  ISCC.exe installer.iss
         working-directory: InnoSetup     
       - uses: actions/upload-artifact@v2
         with:
