@@ -27,8 +27,8 @@ jobs:
       - shell: bash
         run: sh getVersion.sh
         working-directory: InnoSetup
-      - shell: cmd
-        run:  ISCC.exe installer.iss
+      - shell: bash
+        run:  less installer.iss
         working-directory: InnoSetup     
       - uses: actions/upload-artifact@v2
         with:
