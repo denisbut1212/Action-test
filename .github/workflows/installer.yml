@@ -12,7 +12,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           unityVersion: 2019.3.7f1
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: build
           path: build
@@ -21,13 +21,16 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2.1.0
-      - id: getVersion
-        shell: bash
-        run: echo "##[set-output name=version;]"
+      - uses: actions/download-artifact@v1
+        with:
+          name: build
       - shell: bash
         run: |
           cd InnoSetup
-          ISCC.exe installer.iss "$(git tag | tail -1)"
-      - uses: actions/download-artifact@v1
+          sh getVersion.sh
+      - shell: cmd
+        run: ISCC.exe installer.iss     
+      - uses: actions/upload-artifact@v2
         with:
-          name: build     
+          name: installer
+          path: installer
