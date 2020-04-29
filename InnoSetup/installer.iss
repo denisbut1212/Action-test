@@ -17,7 +17,7 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputDir=..\installer
-OutputBaseFilename=cr_installer_0.3.7.1
+OutputBaseFilename=cr_installer_{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
