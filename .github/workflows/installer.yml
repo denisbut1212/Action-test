@@ -31,7 +31,7 @@ jobs:
         run: sh getVersion.sh
         working-directory: InnoSetup
       - shell: bash
-        run:  ISCC.exe installer.iss
+        run:  ISCC.exe "/DMyAppName=Познавательная Реальность" installer.iss
         working-directory: InnoSetup     
       - uses: actions/upload-artifact@v2
         with:
