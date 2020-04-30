@@ -13,7 +13,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
-          unityVersion: 2019.3.7f1-linux-il2cpp
+          unityVersion: 2019.3.7f1-linux-il2cpp-99-try-il2cpp-base
       - uses: actions/upload-artifact@v2
         with:
           name: build
