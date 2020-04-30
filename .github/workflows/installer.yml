@@ -39,18 +39,12 @@ jobs:
         with:
           name: installer
           path: installer
-      - uses: svenstaro/upload-release-action@1.0.1
+      - uses: meeDamian/github-release@v2.0.1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build
-          asset_name: build
-          tag: ${{ github.ref }}
-          overwrite: true
-      - uses: svenstaro/upload-release-action@1.0.1
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: installer
-          asset_name: installer
-          tag: ${{ github.ref }}
-          overwrite: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: >
+            installer\
+            build\StandaloneWindows64\
+          
+
 
