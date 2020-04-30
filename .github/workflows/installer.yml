@@ -54,7 +54,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: >
-            build/StandaloneWindows64/*
+            build/*
             installer/*
           gzip: folders
           allow_override: true
