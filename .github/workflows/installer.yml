@@ -39,6 +39,17 @@ jobs:
         with:
           name: installer
           path: installer
+  upload_assets:
+    needs: [create_installer]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: actions/download-artifact@v1
+        with:
+          name: build
+      - uses: actions/download-artifact@v1
+        with:
+          name: installer 
       - uses: meeDamian/github-release@v2.0.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
