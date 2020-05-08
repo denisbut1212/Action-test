@@ -1,3 +1,8 @@
+#define MyAppVersion "9"
+#define MyAppVersion "9"
+#define MyAppVersion "9"
+#define MyAppVersion "9"
+#define MyAppVersion "9"
 #define MyAppPublisher "Ltd Prof-it"
 #define MyAppURL "http://www.co-reality.ru/"
 #define MyAppExeName "Cognitive Reality.exe"
@@ -29,8 +34,8 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\build\StandaloneWindows64\StandaloneWindows64.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\build\StandaloneWindows64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\build\build.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\build\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
