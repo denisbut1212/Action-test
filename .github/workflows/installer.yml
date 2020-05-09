@@ -21,7 +21,9 @@ jobs:
         working-directory: InnoSetup
       - shell: cmd
         run:  ISCC.exe "/DMyAppName=Познавательная Реальность" installer.iss
-        working-directory: InnoSetup     
+        working-directory: InnoSetup
+      - shell: bash
+        run: rm installer.iss   
       - uses: actions/upload-artifact@v2
         with:
           name: installer
