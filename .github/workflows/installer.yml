@@ -7,28 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.1.0
-      - uses: webbertakken/unity-builder@v0.12
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-        with:
-          unityVersion: 2019.3.7f1-linux-il2cpp-99-try-il2cpp-base
       - uses: actions/upload-artifact@v2
         with:
           name: build
-          path: build
+          path: build/*
   create_installer:
     needs: [build]
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2.1.0
-      - uses: actions/download-artifact@v1
-        with:
-          name: build
       - shell: bash
-        id: getVersion
-        run: sh getVersion.sh
+        run: sh build.sh
         working-directory: InnoSetup
       - shell: cmd
         run:  ISCC.exe "/DMyAppName=Познавательная Реальность" installer.iss
@@ -36,7 +25,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: installer
-          path: installer
+          path: installer/*
   upload_assets:
     needs: [create_installer]
     runs-on: ubuntu-latest
@@ -56,6 +45,3 @@ jobs:
             installer/*
           gzip: folders
           allow_override: true
-          
-
-
