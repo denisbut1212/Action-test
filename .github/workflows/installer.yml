@@ -7,10 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.1.0
-      - uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: build/*
   create_installer:
     needs: [build]
     runs-on: windows-latest
@@ -24,21 +20,11 @@ jobs:
         working-directory: InnoSetup
       - shell: bash
         run: rm installer.iss   
-      - uses: actions/upload-artifact@v2
-        with:
-          name: installer
-          path: installer/*
   upload_assets:
     needs: [create_installer]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.1.0
-      - uses: actions/download-artifact@v1
-        with:
-          name: build
-      - uses: actions/download-artifact@v1
-        with:
-          name: installer 
       - uses: meeDamian/github-release@v2.0.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
