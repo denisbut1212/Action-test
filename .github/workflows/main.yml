@@ -60,7 +60,7 @@ jobs:
         path: Library
         key: Library  
     - name: Unity - Builder
-      uses: webbertakken/unity-builder@v1.4
+      uses: webbertakken/unity-builder@main
       with:
         unityVersion: ${{ matrix.UnityVersion }}
         targetPlatform: StandaloneWindows64
