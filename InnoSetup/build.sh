@@ -9,4 +9,5 @@ $unityPath -batchmode -quit -projectPath "../" -executeMethod BuildScript.Perfor
 	echo \#define MyAppVersion \"$lastVersion\"
 	cat installer.iss;
 } > installer.iss.new
+
 mv installer.iss.new installer.iss
