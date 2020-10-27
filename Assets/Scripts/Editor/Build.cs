@@ -1,6 +1,4 @@
-﻿#if UNITY_EDITOR
-
-using System.Linq;
+﻿using System.Linq;
 using UnityEditor;
 
 public class Build
@@ -18,5 +16,3 @@ public class Build
         PlayerSettings.SetScriptingBackend(targetGroup, initial);
     }
 }
-
-#endif

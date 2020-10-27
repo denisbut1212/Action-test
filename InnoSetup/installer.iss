@@ -9,6 +9,7 @@
 #define MyAppVersion ""
 #define MyAppVersion ""
 #define MyAppVersion ""
+#define MyAppVersion ""
 #define MyAppPublisher "Ltd Prof-it"
 #define MyAppURL "http://www.co-reality.ru/"
 #define MyAppExeName "Cognitive Reality.exe"
