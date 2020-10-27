@@ -7,7 +7,7 @@ $unityPath -batchmode -quit -executeMethod Build.Perform
 
 { 
 	echo \#define MyAppVersion \"$lastVersion\"
-	cat installer.iss;
+	cat InnoSetup/installer.iss;
 } > installer.iss.new
 
 mv installer.iss.new installer.iss
