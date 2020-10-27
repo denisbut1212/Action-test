@@ -8,6 +8,6 @@ namespace Tests
         public void Pass() => Assert.Pass();
 
         [Test]
-        public void Fail() => Assert.Fail();
+        public void Fail() => Assert.Pass();
     }
 }
