@@ -62,10 +62,8 @@ jobs:
     - name: Unity - Builder
       uses: webbertakken/unity-builder@main
       with:
-        projectPath: Action-test
         unityVersion: ${{ matrix.UnityVersion }}
         targetPlatform: StandaloneWindows64
-        buildMethod: Editor.Build.Perform
     - uses: actions/upload-artifact@v2
       with:
         name: Build
