@@ -3,6 +3,7 @@ using UnityEditor;
 
 public class Build
 {
+    //build mehtod
     public static void Perform()
     {
         var scenes = EditorBuildSettings.scenes.Select(e => e.path).ToArray();
