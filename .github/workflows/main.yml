@@ -62,7 +62,7 @@ jobs:
     - name: Unity - Builder
       uses: webbertakken/unity-builder@main
       with:
-        working-directory: Action-test
+        projectPath: Action-test
         unityVersion: ${{ matrix.UnityVersion }}
         targetPlatform: StandaloneWindows64
         buildMethod: Editor.Build.Perform
